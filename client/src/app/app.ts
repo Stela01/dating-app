@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { environmemnt } from '../environments copy/environment.development';
+import { environmemnt } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',

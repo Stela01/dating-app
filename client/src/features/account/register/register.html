@@ -1,14 +1,33 @@
-<div class="card bg-base-100 w-full max-w-lg mx-auto flex flex-col p-6 rounded-lg shadow-lg">
-  <div class="card-title justify-center text-3xl text-primary">Sign up</div>
-  <div class="card-body w-full">
-    <form #registerForm="ngForm" class="flex flex-col gap-4 w-full" (ngSubmit)="register()">
-      <input class="input w-full" name="email" [(ngModel)]="creds.email" placeholder="Email">
-      <input class="input w-full" name="userName" [(ngModel)]="creds.userName" placeholder="User name">
-      <input type="password" class="input w-full" name="password" [(ngModel)]="creds.password" placeholder="Password">
-
-      <div class="flex items-center justify-end gap-3">
-        <button (click)="cancel()" type="button" class="btn">Cancel</button>
-        <button class="btn btn-primary" type="submit">Register</button>
+<div class="card shadow">
+  <div class="card-body p-4">
+    <h3 class="card-title text-center text-primary mb-4">Sign up</h3>
+    <form #registerForm="ngForm" (ngSubmit)="register()">
+      <div class="mb-3">
+        <input
+          class="form-control"
+          name="email"
+          type="email"
+          [(ngModel)]="creds.email"
+          placeholder="Email" />
+      </div>
+      <div class="mb-3">
+        <input
+          class="form-control"
+          name="userName"
+          [(ngModel)]="creds.userName"
+          placeholder="Username" />
+      </div>
+      <div class="mb-4">
+        <input
+          class="form-control"
+          name="password"
+          type="password"
+          [(ngModel)]="creds.password"
+          placeholder="Password" />
+      </div>
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Register</button>
       </div>
     </form>
   </div>

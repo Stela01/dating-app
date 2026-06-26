@@ -1,4 +1,4 @@
 export const environmemnt = {
-  production: false,
+  production: true,
   apiUrl: 'api/'
 };

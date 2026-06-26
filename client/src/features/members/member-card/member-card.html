@@ -1,0 +1,11 @@
+@if (member(); as member) {
+  <div routerLink="/members/{{member.id}}" class="card position-relative overflow-hidden" style="cursor: pointer; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+    <img src="{{member?.imageUrl || '/user.png'}}" alt="{{member.userName}} image" class="card-img-top" style="height: 200px; object-fit: cover;">
+    <div class="position-absolute bottom-0 w-100 px-3 py-1 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+      <div class="d-flex flex-column">
+        <span class="fw-semibold">{{member.userName}}, {{member.dateOfBirth | age}}</span>
+        <span class="small">{{member.city}}</span>
+      </div>
+    </div>
+  </div>
+}

@@ -17,7 +17,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         @if (accountService.currentUser()) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+            <a class="nav-link" routerLink="/members" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">Matches</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
@@ -32,11 +33,18 @@
       </ul>
 
       <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-light btn-sm" (click)="themeService.toggle()" title="Toggle theme">
+          @if (themeService.theme() === 'light') {
+            <i class="bi bi-moon-fill"></i>
+          } @else {
+            <i class="bi bi-sun-fill"></i>
+          }
+        </button>
         @if (accountService.currentUser(); as user) {
           <div class="dropdown">
             <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center gap-2"
                     type="button" data-bs-toggle="dropdown">
-              <img src="/user.png" alt="avatar" class="rounded-circle" width="32" height="32">
+              <img [src]="user?.imageUrl || '/user.png'" alt="avatar" class="rounded-circle" width="32" height="32">
               <span>{{ user.userName }}</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">

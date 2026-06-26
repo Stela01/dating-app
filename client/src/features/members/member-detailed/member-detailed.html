@@ -1,1 +1,39 @@
-<p>member-detailed works!</p>
+@if(member(); as member) {
+  <div class="d-flex gap-3">
+    <div class="card d-flex flex-column" style="width: 25%; height: 85vh; min-width: 150px;">
+      <img src="{{member.imageUrl || '/user.png'}}" alt="image of member"
+        class="rounded-circle mx-auto mt-3 object-fit-cover" style="width: 80%; max-width: 200px; aspect-ratio: 1/1;">
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center">
+          <div class="fs-4 text-primary">
+            {{member.userName}}, {{member.dateOfBirth | age}}
+          </div>
+
+          <div class="small">
+            {{member.city}}, {{member.country}}
+          </div>
+        </div>
+        <hr>
+        <ul class="list-unstyled w-100">
+          <li><a routerLink="profile" routerLinkActive="active" class="text-decoration-none text-body d-block px-3 py-2 rounded">Profile</a></li>
+          <li><a routerLink="photos" routerLinkActive="active" class="text-decoration-none text-body d-block px-3 py-2 rounded">Photos</a></li>
+          <li><a routerLink="messages" routerLinkActive="active" class="text-decoration-none text-body d-block px-3 py-2 rounded">Messages</a></li>
+        </ul>
+      </div>
+      <div class="d-flex justify-content-between gap-2 px-2 mb-3">
+        <button class="btn btn-info flex-fill">Go back</button>
+        <button class="btn btn-primary flex-fill">Like user</button>
+      </div>
+    </div>
+
+    <div class="card w-75 p-4">
+      <h3 class="card-title fs-3 text-primary">{{title()}}</h3>
+      <hr>
+      <div>
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+} @else {
+  <div>Member not found</div>
+}

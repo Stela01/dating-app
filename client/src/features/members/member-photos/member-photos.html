@@ -1,0 +1,16 @@
+@if (photos$ | async; as photos) {
+  @if (photos.length > 0) {
+    <div class="row row-cols-4 g-3 p-4 overflow-auto" style="height: 65vh;">
+      @for (photo of photos; track photo.id) {
+        <div class="col">
+          <img src="{{photo.url}}" alt="photo of member" class="w-100 rounded">
+        </div>
+      }
+      @for (photo of photoMocks; track $index) {
+        <div class="col">
+          <img src="{{photo.url}}" alt="photo of member" class="w-100 rounded">
+        </div>
+      }
+    </div>
+  }
+}

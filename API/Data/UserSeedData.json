@@ -10,5 +10,29 @@
         "City": "Greenbush",
         "Country": "Martinique",
         "ImageUrl": "https://randomuser.me/api/portraits/women/54.jpg"
+    },
+    {
+        "Email": "mark@test.com",
+        "Gender": "male",
+        "DateOfBirth": "1997-02-10",
+        "UserName": "Mark",
+        "Created": "2024-07-25",
+        "LastActive": "2025-06-21",
+        "Description": "Opis",
+        "City": "NS",
+        "Country": "Serbia",
+        "ImageUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+        "Email": "alex@test.com",
+        "Gender": "male",
+        "DateOfBirth": "1999-10-22",
+        "UserName": "Alex",
+        "Created": "2025-07-25",
+        "LastActive": "2025-09-21",
+        "Description": "Opis",
+        "City": "NS",
+        "Country": "Serbia",
+        "ImageUrl": "https://randomuser.me/api/portraits/men/3.jpg"
     }
 ]

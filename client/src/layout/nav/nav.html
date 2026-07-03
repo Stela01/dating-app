@@ -29,6 +29,13 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
           </li>
+          @if (busyService.busyRequestCount() > 0) {
+            <li class="nav-item d-flex align-items-center ms-2">
+              <div class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </li>
+          }
         }
       </ul>
 
@@ -48,7 +55,7 @@
               <span>{{ user.userName }}</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Edit profile</a></li>
+              <li><a class="dropdown-item" routerLink="/members/{{user.id}}">Edit profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
             </ul>

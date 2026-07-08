@@ -1,0 +1,8 @@
+<button
+  (click)="onClick($event)"
+  [disabled]="disabled()"
+  class="border-0 bg-transparent" style="cursor: pointer;">
+  <i class="bi bi-trash fs-4 text-danger"
+    [class.opacity-25]="disabled()">
+  </i>
+</button>

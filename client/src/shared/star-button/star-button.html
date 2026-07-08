@@ -1,0 +1,10 @@
+<button (click)="onClick($event)"
+  [disabled]="disabled()"
+  class="position-absolute top-0 end-0 border-0 bg-transparent" style="cursor: pointer;">
+  <i class="bi fs-4"
+    [class.bi-star-fill]="selected()"
+    [class.bi-star]="!selected()"
+    [class.text-warning]="selected()"
+    [class.text-white]="!selected()">
+  </i>
+</button>

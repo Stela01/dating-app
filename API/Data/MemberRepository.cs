@@ -15,7 +15,8 @@ public class MemberRepository(DataContext context) : IMemberRepository
     public async Task<Member?> GetMemberForUpdate(int id)
     {
         return await context.Members
-            .Include( x=> x.User)
+            .Include( x => x.User)
+            .Include( x => x.Photos)
             .SingleOrDefaultAsync( x => x.Id == id );
     }
 

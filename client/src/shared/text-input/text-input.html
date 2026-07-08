@@ -1,0 +1,29 @@
+<div class="form-floating mb-3">
+  <input class="form-control"
+    [type]="type()"
+    [max]="maxDate()"
+    [class.is-invalid]="control.invalid && control.touched"
+    [class.is-valid]="control.valid && control.touched"
+    [formControl]="control"
+    [placeholder]="label()">
+  <label>{{label()}}</label>
+  @if (control.hasError('required') && control.touched) {
+    <div class="invalid-feedback">{{label()}} is required</div>
+  }
+  @if (control.hasError('email') && control.touched) {
+    <div class="invalid-feedback">Invalid email address</div>
+  }
+  @if (control.hasError('minlength') && control.touched) {
+    <div class="invalid-feedback">
+      {{label()}} must be at least {{control.errors?.['minlength'].requiredLength}} characters
+    </div>
+  }
+  @if (control.hasError('maxlength') && control.touched) {
+    <div class="invalid-feedback">
+      {{label()}} must be at most {{control.errors?.['maxlength'].requiredLength}} characters
+    </div>
+  }
+  @if (control.hasError('passwordMismatch') && control.touched) {
+    <div class="invalid-feedback">Passwords do not match</div>
+  }
+</div>

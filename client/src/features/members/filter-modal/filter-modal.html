@@ -1,0 +1,50 @@
+@if (isOpen()) {
+  <div class="modal d-block" (click)="close()">
+    <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Filters</h5>
+          <button type="button" class="btn-close" (click)="close()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <span class="fw-semibold d-block mb-2">Select gender:</span>
+            <div class="btn-group w-100" role="group">
+              <input type="radio" class="btn-check" [(ngModel)]="memberParams().gender"
+                name="gender" value="male" id="male">
+              <label class="btn btn-outline-primary" for="male">Male</label>
+              <input type="radio" class="btn-check" [(ngModel)]="memberParams().gender"
+                name="gender" value="female" id="female">
+              <label class="btn btn-outline-primary" for="female">Female</label>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-semibold">Select age:</span>
+            <div class="d-flex gap-2">
+              <input type="number" class="form-control" style="width: 75px;"
+                [min]="18" [max]="100" [(ngModel)]="memberParams().minAge"
+                name="minAge" (change)="onMinAgeChange()">
+              <input type="number" class="form-control" style="width: 75px;"
+                [min]="memberParams().minAge" [max]="100" [(ngModel)]="memberParams().maxAge"
+                name="maxAge" (change)="onMaxAge()">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">Order by:</span>
+            <select class="form-select" style="width: auto;" name="orderBy"
+              [(ngModel)]="memberParams().orderBy">
+              <option disabled>Order by</option>
+              <option value="created">Newest members</option>
+              <option value="lastActive">Last active</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="submit()" class="btn btn-primary">Submit</button>
+          <button (click)="close()" class="btn btn-secondary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop show"></div>
+}

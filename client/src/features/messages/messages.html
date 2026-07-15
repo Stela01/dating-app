@@ -1,1 +1,62 @@
-<p>messages works!</p>
+<div class="d-flex flex-column w-100">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex gap-2">
+      @for (tab of tabs; track $index) {
+        <button class="btn"
+          [class.btn-primary]="container === tab.value"
+          [class.btn-outline-primary]="container !== tab.value"
+          (click)="setContainer(tab.value)">
+          {{tab.label}}
+        </button>
+      }
+    </div>
+    @if (paginatedMessages()?.metadata; as metadata) {
+      <app-paginator
+        [hidden]="metadata.totalCount === 0"
+        [pageNumber]="metadata.currentPage"
+        [pageSize]="metadata.pageSize"
+        [totalCount]="metadata.totalCount"
+        [totalPages]="metadata.totalPages"
+        (pageChange)="onPageChange($event)"
+      />
+    }
+  </div>
+  <div class="table-responsive mt-3 border rounded overflow-hidden">
+    <table class="table table-hover mb-0 w-100" style="table-layout: fixed;">
+      <thead>
+        <tr>
+          <th style="width: 22%">Sender / Recipient</th>
+          <th style="width: 44%">Message</th>
+          <th style="width: 22%">Date</th>
+          <th style="width: 11%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (message of paginatedMessages()?.items; track message.id) {
+          <tr
+            [class.fw-bold]="isInbox && !message.dateRead"
+            routerLink="/members/{{isInbox ? message.senderId : message.recipientId}}/messages"
+            style="cursor: pointer;"
+          >
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <img src="{{isInbox ? message.senderImageUrl : message.recipientImageUrl}}"
+                     alt="image of member"
+                     class="rounded-circle"
+                     style="width: 48px; height: 48px; object-fit: cover;">
+                <div>{{isInbox ? message.senderUserName : message.recipientUserName}}</div>
+              </div>
+            </td>
+            <td class="text-truncate">{{message.content}}</td>
+            <td>{{message.messageSent | date: 'medium'}}</td>
+            <td style="width: 11%">
+              <button (click)="deleteMessage($event, message.id)" class="btn btn-sm btn-outline-danger rounded-circle">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20260713163831_MessageEntityAdded")]
+    partial class MessageEntityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -128,14 +131,18 @@ namespace API.Migrations
                     b.Property<bool>("SenderDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SenderId")
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SenderId1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RecipientId");
 
-                    b.HasIndex("SenderId");
+                    b.HasIndex("SenderId1");
 
                     b.ToTable("Messages");
                 });
@@ -203,7 +210,7 @@ namespace API.Migrations
 
                     b.HasOne("API.Entities.Member", "Sender")
                         .WithMany("MessagesSent")
-                        .HasForeignKey("SenderId")
+                        .HasForeignKey("SenderId1")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
